@@ -5,7 +5,12 @@ const argv = yargs(hideBin(process.argv)).argv;
 
 const { Movie } = require("./models/models");
 const connection = require("./db/connection");
-const { addMovie, listMovie } = require("./utils/index");
+const {
+  addMovie,
+  listMovie,
+  updateMovie,
+  deleteMovie,
+} = require("./utils/index");
 
 const app = async (commandLineInput) => {
   try {
@@ -24,6 +29,10 @@ const app = async (commandLineInput) => {
       });
     } else if (commandLineInput.list) {
       await listMovie();
+    } else if (commandLineInput.update) {
+      await updateMovie(commandLineInput);
+    } else if (commandLineInput.delete) {
+      await deleteMovie(commandLineInput.title);
     }
     connection.close();
     process.exit();

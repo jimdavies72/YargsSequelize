@@ -1,11 +1,19 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const connection = require("../db/connection");
-const { setApproval, firstUpper } = require("./modelHelpers");
+const {
+  setApproval,
+  firstUpper,
+  setLower,
+  setUpper,
+} = require("./modelHelpers");
 
 const Movie = connection.define("Movies", {
   title: {
     type: DataTypes.STRING,
     allowNull: false,
+    set(value) {
+      this.setDataValue("title", setLower(value));
+    },
     get() {
       const rawValue = this.getDataValue("title");
       return firstUpper(rawValue);
@@ -14,6 +22,9 @@ const Movie = connection.define("Movies", {
   actor: {
     type: DataTypes.STRING,
     allowNull: false,
+    set(value) {
+      this.setDataValue("actor", setUpper(value));
+    },
     get() {
       const rawValue = this.getDataValue("actor");
       return firstUpper(rawValue);
@@ -37,6 +48,18 @@ const Movie = connection.define("Movies", {
   },
 });
 
+const Admin = connection.define("Admin", {
+  user: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  title: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+});
+
 module.exports = {
   Movie,
+  Admin,
 };

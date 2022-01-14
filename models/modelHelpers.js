@@ -12,6 +12,18 @@ const setApproval = (rating) => {
   }
 };
 
+const setLower = (value) => {
+  const newValue = value.toLowerCase();
+  return newValue;
+};
+
+const setUpper = (value) => {
+  const newValue = value.toUpperCase();
+  return newValue;
+};
+
+const addAudit = () => {};
+
 const firstUpper = (rawValue) => {
   try {
     return rawValue
@@ -26,4 +38,6 @@ const firstUpper = (rawValue) => {
 module.exports = {
   setApproval,
   firstUpper,
+  setLower,
+  setUpper,
 };

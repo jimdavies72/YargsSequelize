@@ -20,7 +20,39 @@ const listMovie = async () => {
   }
 };
 
+const updateMovie = async (movieObj) => {
+  try {
+    let update = {};
+
+    movieObj.title && (update["title"] = movieObj.title);
+    movieObj.actor && (update["actor"] = movieObj.actor);
+    movieObj.rating && (update["rating"] = movieObj.rating);
+
+    await Movie.update(update, {
+      where: {
+        title: movieObj.search,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const deleteMovie = async (title) => {
+  try {
+    await Movie.destroy({
+      where: {
+        title: title,
+      },
+    });
+  } catch (error) {
+    displayInfo(error.message);
+  }
+};
+
 module.exports = {
   addMovie,
   listMovie,
+  updateMovie,
+  deleteMovie,
 };
