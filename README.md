@@ -1,5 +1,5 @@
 # Repo: YargsSequelize
-![Static Badge](https://img.shields.io/badge/Dev_status-Development-green)
+![Static Badge](https://img.shields.io/badge/Dev_status-Complete-blue)
 ![Static Badge](https://img.shields.io/badge/Test_status-Untested-red)
 
 ## Reason: Introduction to Sequelize ORM 
